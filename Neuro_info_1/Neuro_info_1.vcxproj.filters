@@ -26,8 +26,14 @@
     <ClInclude Include="neuron.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="reader.h">
+    <ClInclude Include="helper.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\test_data.txt" />
+    <Text Include="data\test_data_corrupted.txt" />
+    <Text Include="data\train_data.txt" />
+    <Text Include="data\train_data_corrupted.txt" />
   </ItemGroup>
 </Project>

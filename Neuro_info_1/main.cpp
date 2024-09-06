@@ -1,5 +1,5 @@
 #include "neuron.h"
-#include "reader.h"
+#include "helper.h"
 
 std::vector<std::vector<int>> numbers = {
                                             {1, 1, 0, 1, 0, 1, 0, 1, 1}, 
@@ -23,29 +23,29 @@ void getAcc(std::vector<std::vector<int>>& data, neuron& n) {
 
 int main() {
    
-    std::vector<std::vector<int>> training_data = readDataFromFile("data/train_data.txt");
-    std::vector<std::vector<int>> test_data = readDataFromFile("data/test_data.txt");
-    int count = 1;
-    shuffle_data(training_data);
-    shuffle_data(test_data);
+    auto [training_data, targets] = readTrainDataFromFile("data/train_data_corrupted.txt");
+
+    shuffle_data(training_data, targets);
 
 
     neuron neuro(9, -1, 1, 25, numbers[3]);  // Создаем нейрон с 9 весами в диапазоне от -1 до 1, порогом классификации 25 и распознаваемым числом - 3
+
     std::cout << "Веса до обучения:   "; neuro.printW();
-    neuro.fit(training_data, 2 , 1); 
+    neuro.fit(training_data, targets, 10, 1);
     std::cout << "Веса после обучения:"; neuro.printW();
 
-    for (auto test : test_data) {
-        int prediction = neuro.predict(test);
-        if (prediction == 1) 
-        { 
-            std::cout << "Данные: " << count << " Это точно тройка\n"; 
+    std::vector<std::vector<int>> test_data = readTestDataFromFile("data/test_data_corrupted.txt");
+
+    // Предсказание значений на тестовых данных
+    std::vector<int> predictions = neuro.predict(test_data);
+
+    // Вывод предсказаний
+    for (size_t i = 0; i < test_data.size(); ++i) {
+        std::cout << "Input: ";
+        for (int val : test_data[i]) {
+            std::cout << val;
         }
-        else 
-        { 
-            std::cout << "Данные: " << count << " Это точно не тройка\n"; 
-        }
-        count++;
+        std::cout << " Prediction: " << predictions[i] << std::endl;
     }
     getAcc(training_data, neuro);
     return 0;

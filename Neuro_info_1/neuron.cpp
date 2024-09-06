@@ -18,18 +18,11 @@ neuron::neuron(int size, int min_, int max_, float threshold, std::vector<int>& 
     this->value_ = value_;
 }
 
-void neuron::fit(const std::vector<std::vector<int>>& training_data, int epochs, float step)
-{
-    int target;
+void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::vector<int>& targets, int epochs, float step) {
     for (int epoch = 0; epoch < epochs; ++epoch) {
         this->v_error = 0;
         for (size_t i = 0; i < training_data.size(); ++i) {
-            if (std::equal(training_data[i].begin(), training_data[i].end(), this->value_.begin())) {
-               target = 1;
-            }
-            else {
-                target = 0;
-            }
+            int target = targets[i];
             float sum = 0.0;
 
             for (size_t j = 0; j < training_data[i].size(); ++j) {
@@ -59,20 +52,17 @@ void neuron::fit(const std::vector<std::vector<int>>& training_data, int epochs,
     }
 }
 
-int neuron::predict(const std::vector<int>& input)
-{
-    if (input.size() != weights.size()) {
-        std::cerr << "Input size does not match weights size" << std::endl;
-        return -1;
+std::vector<int> neuron::predict(const std::vector<std::vector<int>>& test_data) {
+    std::vector<int> predictions;
+    for (const auto& input : test_data) {
+        float sum = 0.0;
+        for (size_t j = 0; j < input.size(); ++j) {
+            sum += input[j] * this->weights[j];
+        }
+        // Предсказываем 1, если сумма больше или равна порогу, иначе 0
+        predictions.push_back(sum >= threshold ? 1 : 0);
     }
-
-    float sum = 0.0;
-    for (size_t i = 0; i < input.size(); ++i) {
-        sum += input[i] * this->weights[i];
-    }
-    int result = (sum >= this->threshold) ? 1 : 0;
-
-    return result;
+    return predictions;
 }
 
 void neuron::printW()

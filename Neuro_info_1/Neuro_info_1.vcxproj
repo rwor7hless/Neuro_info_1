@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,7 +134,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="neuron.h" />
-    <ClInclude Include="reader.h" />
+    <ClInclude Include="helper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\test_data.txt" />
+    <Text Include="data\test_data_corrupted.txt" />
+    <Text Include="data\train_data.txt" />
+    <Text Include="data\train_data_corrupted.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

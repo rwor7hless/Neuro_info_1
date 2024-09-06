@@ -17,8 +17,8 @@ private:
 
 public:
 	neuron(int size, int min_, int max_, float threshold, std::vector<int>& value);
-	void fit(const std::vector<std::vector<int>>& training_data, int epochs, float step);
-	int predict(const std::vector<int>& input);
+	void fit(const std::vector<std::vector<int>>& training_data, const std::vector<int>& targets, int epochs, float step);
+	std::vector<int> predict(const std::vector<std::vector<int>>& test_data);
 	void printW();
 	int getErrors();
 };
