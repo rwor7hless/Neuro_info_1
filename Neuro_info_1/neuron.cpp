@@ -1,27 +1,40 @@
 ﻿#include "neuron.h"
 
 
-neuron::neuron(int size, int min_, int max_, float threshold, std::vector<int>& value_)
+neuron::neuron(int size, int min_, int max_, float threshold)
 {
+    // Генерируем рандом девайс для псевдослучайных значений заполнения
     std::random_device rd;  
     std::mt19937 gen(rd()); 
 
     // диапазон случайных чисел
     std::uniform_int_distribution<> dis(min_, max_);
 
+    // Подгоняем размер данных под тот, что указали в конструкторе
     weights.resize(size);
     for (float& weight : weights) {
-        weight = dis(gen);  
+        weight = dis(gen);  // Рандомно заполняем их
     }
 
     this->threshold = threshold;
-    this->value_ = value_;
 }
 
 void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::vector<int>& targets, int epochs, float step) {
     for (int epoch = 0; epoch < epochs; ++epoch) {
-        this->v_error = 0;
-        for (size_t i = 0; i < training_data.size(); ++i) {
+
+        this->v_error = 0; // На каждой эпохе количество ошибок обнуляется
+
+        /*
+            Работа с уже размеченными данными, проходимся по каждому объекту в массиве тренировочных данных
+            Умножаем каждую "1" входного массива на соответствующий вес в векторе весов
+            Если сумма весов искомой цифры преодалевает порог, то все хорошо, ничего не делаем
+
+            Если сумма ненужной цифры преодалевает порог или наоборот, сумма нужной цифры не дотягивает
+            То изменяем веса на -step, если первый случай и +step для второго случая
+            И если случай ошибки случился, то увеличиваем общее число ошибок после обучении
+        */
+
+        for (size_t i = 0; i < training_data.size(); ++i) {  
             int target = targets[i];
             float sum = 0.0;
 
@@ -51,6 +64,13 @@ void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::
         }
     }
 }
+
+
+/*
+        Функция предикт просто считает сумму для входных векторов (векторов данных)
+        И при при классфикации, в зависимости от того, прошла ли цифра порог, выдает 1, если данные прошли порог суммы
+        И выдает 0, если порог не пройден
+*/
 
 std::vector<int> neuron::predict(const std::vector<std::vector<int>>& test_data) {
     std::vector<int> predictions;

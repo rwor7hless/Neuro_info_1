@@ -13,6 +13,14 @@
 #include <fstream>
 #include <iostream>
 
+/*
+Функция последовательно идет по файлу с тренировочными данными и разбивает его на 2 массива: массив входных данных и массив разметки
+
+Данные идут в формате: {Данные} {разметка}
+прим: 000101101 0 - ненужное для распознавания 
+      011001010 1 - нужное для распознавания
+*/
+
 std::pair<std::vector<std::vector<int>>, std::vector<int>> readTrainDataFromFile(const std::string& filename) {
     std::vector<std::vector<int>> data;
     std::vector<int> targets;
@@ -69,41 +77,20 @@ std::vector<std::vector<int>> readTestDataFromFile(const std::string& filename) 
     return data;
 }
 
-std::vector<std::vector<int>> parse_data(const std::vector<std::string>& raw_data) {
-    std::vector<std::vector<int>> data;
-    for (const auto& line : raw_data) {
-        std::vector<int> input;
-        std::istringstream iss(line);
-        std::string token;
-        iss >> token;
-        for (char c : token) {
-            input.push_back(c - '0');
-        }
-        data.push_back(input);
-    }
-    return data;
-}
-
-std::vector<int> parse_targets(const std::vector<std::string>& raw_data) {
-    std::vector<int> targets;
-    for (const auto& line : raw_data) {
-        std::istringstream iss(line);
-        std::string token;
-        iss >> token;
-        iss >> token;
-        targets.push_back(std::stoi(token));
-    }
-    return targets;
-}
-
 void shuffle_data(std::vector<std::vector<int>>& data, std::vector<int>& targets) {
     std::random_device rd;
     std::mt19937 g(rd());
-    std::vector<std::pair<std::vector<int>, int>> combined;
+    std::vector<std::pair<std::vector<int>, int>> combined; // Создаем совмещенный ветор, (Входные данные) - (разметка для них)
     for (size_t i = 0; i < data.size(); ++i) {
-        combined.emplace_back(data[i], targets[i]);
+        combined.emplace_back(data[i], targets[i]); // заполняем вектор 
     }
-    std::shuffle(combined.begin(), combined.end(), g);
+    std::shuffle(combined.begin(), combined.end(), g); // перемешиваем его
+
+    /*
+    Этот цикл нужен для того, чтобы восстановить соответствие между данными и разметками для них
+    По большому счету мы просто перезаписываем вектор
+    */
+
     for (size_t i = 0; i < combined.size(); ++i) {
         data[i] = combined[i].first;
         targets[i] = combined[i].second;
