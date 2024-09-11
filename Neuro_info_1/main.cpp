@@ -10,18 +10,17 @@ void getAcc(std::vector<std::vector<int>>& data, neuron& n) {
 
 int main() {
    
-    auto [training_data, targets] = readTrainDataFromFile("data/train_data_corrupted.txt");
-
+    auto [training_data, targets] = readTrainDataFromFile("data/train_data_corrupted_2.txt");
     shuffle_data(training_data, targets);
 
 
-    neuron neuro(9, -1, 1, 25);  // Создаем нейрон с 9 весами в диапазоне от -1 до 1, порогом классификации 25 и распознаваемым числом - 3
+    neuron neuro(9, -1, 1, 25);  // Создаем нейрон с 9 весами в диапазоне от -1 до 1, порогом классификации 25 
     std::cout << "Веса до обучения:   "; neuro.printW();
-    neuro.fit(training_data, targets, 2, 1);
+    neuro.fit(training_data, targets, 1, 1);
     std::cout << "Веса после обучения:"; neuro.printW();
     getAcc(training_data, neuro);
 
-    std::vector<std::vector<int>> test_data = readTestDataFromFile("data/test_data_corrupted.txt");
+    std::vector<std::vector<int>> test_data = readTestDataFromFile("data/test_data.txt");
     // Предсказание значений на тестовых данных
     std::vector<int> predictions = neuro.predict(test_data);
     
