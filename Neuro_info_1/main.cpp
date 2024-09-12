@@ -10,7 +10,7 @@ void getAcc(std::vector<std::vector<int>>& data, neuron& n) {
 
 int main() {
    
-    auto [training_data, targets] = readTrainDataFromFile("data/train_data_corrupted_4.txt");
+    auto [training_data, targets] = readTrainDataFromFile("data/train_data_corrupted_5.txt");
     shuffle_data(training_data, targets);
 
 
