@@ -37,5 +37,12 @@
     <Text Include="data\train_data_corrupted.txt" />
     <Text Include="data\train_data_corrupted_1.txt" />
     <Text Include="data\train_data_corrupted_2.txt" />
+    <Text Include="data\train_data_corrupted_3.txt" />
+    <Text Include="data\train_data_corrupted_4.txt" />
+    <Text Include="data\train_data_corrupted_5.txt" />
+    <Text Include="data\train_data_corrupted_6.txt" />
+    <Text Include="data\train_data_corrupted_7.txt" />
+    <Text Include="data\train_data_corrupted_8.txt" />
+    <Text Include="data\train_data_corrupted_9.txt" />
   </ItemGroup>
 </Project>
