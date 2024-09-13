@@ -1,2 +1,3 @@
 ﻿  main.cpp
+C:\Users\Роман\Documents\GitHub\Neuro_info_1\Neuro_info_1\main.cpp(18,46): warning C4305: аргумент: усечение из "double" в "float"
   Neuro_info_1.vcxproj -> C:\Users\Роман\Documents\GitHub\Neuro_info_1\x64\Debug\Neuro_info_1.exe
