@@ -132,12 +132,16 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="neuron.cpp" />
+    <ClCompile Include="perceptron.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes.h" />
     <ClInclude Include="neuron.h" />
     <ClInclude Include="helper.h" />
+    <ClInclude Include="perceptron.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="data\perceptron\train_data_corrupted_0.txt" />
     <Text Include="data\test_data.txt" />
     <Text Include="data\test_data_corrupted.txt" />
     <Text Include="data\train_data_corrupted_0.txt" />

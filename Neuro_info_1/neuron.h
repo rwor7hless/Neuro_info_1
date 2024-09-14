@@ -1,10 +1,6 @@
 #ifndef NEURON_H
 #define NEURON_H
-#include <iostream>
-#include <vector>
-#include <random>
-#include <algorithm>
-#include <iomanip>
+#include "includes.h"
 class neuron
 {
 

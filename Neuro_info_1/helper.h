@@ -1,17 +1,6 @@
 #ifndef HELPER_H
 #define HELPER_H
-#include <vector>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <iostream>
-#include <random>
-
-#include <vector>
-#include <string>
-#include <sstream>
-#include <fstream>
-#include <iostream>
+#include "includes.h"
 
 /*
 Функция последовательно идет по файлу с тренировочными данными и разбивает его на 2 массива: массив входных данных и массив разметки
@@ -52,6 +41,40 @@ std::pair<std::vector<std::vector<int>>, std::vector<int>> readTrainDataFromFile
     return { data, targets };
 }
 
+std::pair<std::vector<std::vector<int>>, std::vector<std::string>> readTrainDataFromFile_p(const std::string& filename) {
+    std::vector<std::vector<int>> data;
+    std::vector<std::string> targets;
+    std::ifstream file(filename);
+    std::string line;
+
+    if (!file.is_open()) {
+        std::cerr << "Unable to open file " << filename << std::endl;
+        return { data, targets };
+    }
+
+    while (std::getline(file, line)) {
+        std::vector<int> row;
+        std::istringstream iss(line);
+        std::string token;
+        iss >> token;
+        for (char c : token) {
+            if (c == '0' || c == '1') {
+                row.push_back(c - '0');
+            }
+            else {
+                std::cerr << "Invalid character in data: " << c << std::endl;
+                return { data, targets };
+            }
+        }
+        data.push_back(row);
+
+        iss >> token;
+        targets.push_back(token);
+    }
+
+    file.close();
+    return { data, targets };
+}
 
 std::vector<std::vector<int>> readTestDataFromFile(const std::string& filename) {
     std::vector<std::vector<int>> data;
