@@ -9,13 +9,13 @@ void getAcc(std::vector<std::vector<int>>& data, neuron& n) {
 }
 
 int main() {
-    auto [training_data, targets] = readTrainDataFromFile("data/train_data_corrupted_5.txt");
+    auto [training_data, targets] = readTrainDataFromFile("data/train_data_corrupted_1.txt");
     shuffle_data(training_data, targets);
 
 
     neuron neuro(9, -1, 1, 25);  // Создаем нейрон с 9 весами в диапазоне от -1 до 1, порогом классификации 25 
     std::cout << "Weights before fit:\t"; neuro.printW();
-    neuro.fit(training_data, targets, 100, 1);
+    neuro.fit(training_data, targets, 5, 1);
     std::cout << "Weights after fit:\t"; neuro.printW();
     getAcc(training_data, neuro);
 
