@@ -141,6 +141,7 @@
     <ClInclude Include="perceptron.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="data\perceptron\test_data_p.txt" />
     <Text Include="data\perceptron\train_data_corrupted_0.txt" />
     <Text Include="data\test_data.txt" />
     <Text Include="data\test_data_corrupted.txt" />

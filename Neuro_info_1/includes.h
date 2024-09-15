@@ -8,5 +8,5 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-
+#include <Windows.h>
 #endif // !INCLUDES_H
