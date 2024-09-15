@@ -11,7 +11,7 @@ perceptron::perceptron(int min_, int max_)
     std::uniform_int_distribution<> dis(min_, max_);
 
     // Подгоняем размер данных под тот, что указали в конструкторе
-    m_weights.resize(9, std::vector<float>(15));
+    m_weights.resize(10, std::vector<float>(15));
 
     for (std::vector<float>& row : m_weights) {
         for (float& num : row) {
@@ -87,8 +87,7 @@ void perceptron::fit(const std::vector<std::vector<int>>& training_data, const s
                 // Увеличиваем веса для правильного индекса
                 auto target_it = std::find(m_numbers.begin(), m_numbers.end(), target);
                 if (target_it != m_numbers.end()) {
-                    int target_index = std::distance(m_numbers.begin(), target_it) - 1;
-                    std::cout << target_index << std::endl;
+                    int target_index = std::distance(m_numbers.begin(), target_it);
                     for (size_t j = 0; j < data.size(); ++j) {
                         if (data[j] == 1) {
                             this->m_weights[target_index][j] += step;

@@ -1,8 +1,2 @@
 ﻿  main.cpp
-C:\Users\PC\Documents\Github\Neuro_info_1\Neuro_info_1\main.cpp(41,24): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-C:\Users\PC\Documents\Github\Neuro_info_1\Neuro_info_1\main.cpp(41,18): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-  perceptron.cpp
-C:\Users\PC\Documents\Github\Neuro_info_1\Neuro_info_1\perceptron.cpp(18,22): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-C:\Users\PC\Documents\Github\Neuro_info_1\Neuro_info_1\perceptron.cpp(90,38): warning C4244: инициализация: преобразование "__int64" в "int", возможна потеря данных
-  Создание кода...
   Neuro_info_1.vcxproj -> C:\Users\PC\Documents\Github\Neuro_info_1\x64\Debug\Neuro_info_1.exe

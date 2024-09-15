@@ -16,6 +16,7 @@ public:
 	std::string predict(const std::vector<int>& test_data);
 	void fit(const std::vector<std::vector<int>>& training_data, const std::vector<std::string>& targets, int epochs, float step);
 	void get_weigths() const;
+	int get_errors() { return this->m_errors; };
 };
 #endif // !PERCEPTRON_H
 
