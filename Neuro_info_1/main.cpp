@@ -1,4 +1,3 @@
-//#include "neuron.h"
 #include "perceptron.h"
 #include "helper.h"
 void getAcc(std::vector<std::vector<int>>& data, perceptron& n) {
@@ -19,7 +18,7 @@ int main() {
         return 1;
     }
 
-    perceptron p(-5,5);
+    perceptron p(-1,1);
 
 
     p.get_weigths();
