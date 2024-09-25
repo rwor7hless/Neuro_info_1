@@ -10,14 +10,14 @@ void getAcc(std::vector<std::vector<int>>& data, perceptron& n) {
 int main() {
 
 
-    auto [training_data, targets] = readTrainDataFromFile_p("data/perceptron/train_data_corrupted_0.txt");
+    auto [training_data, targets] = readTrainDataFromFile_p("data/perceptron/train_data_corrupted_14.txt");
     auto test_data = readTestDataFromFile("data/perceptron/test_data_p.txt");
     std::vector<std::string> answers;
     if (training_data.empty() || targets.empty()) {
         std::cerr << "No data loaded from file." << std::endl;
         return 1;
     }
-
+    shuffle_data_perceptron(training_data, targets);
     perceptron p(-1,1);
 
 

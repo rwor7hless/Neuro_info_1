@@ -120,4 +120,24 @@ void shuffle_data(std::vector<std::vector<int>>& data, std::vector<int>& targets
     }
 }
 
+void shuffle_data_perceptron(std::vector<std::vector<int>>& data, std::vector<std::string>& targets) {
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::vector<std::pair<std::vector<int>, std::string>> combined; // Создаем совмещенный ветор, (Входные данные) - (разметка для них)
+    for (size_t i = 0; i < data.size(); ++i) {
+        combined.emplace_back(data[i], targets[i]); // заполняем вектор 
+    }
+    std::shuffle(combined.begin(), combined.end(), g); // перемешиваем его
+
+    /*
+    Этот цикл нужен для того, чтобы восстановить соответствие между данными и разметками для них
+    По большому счету мы просто перезаписываем вектор
+    */
+
+    for (size_t i = 0; i < combined.size(); ++i) {
+        data[i] = combined[i].first;
+        targets[i] = combined[i].second;
+    }
+}
+
 #endif // !HELPER_H
