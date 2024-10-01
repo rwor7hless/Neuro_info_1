@@ -19,7 +19,7 @@ neuron::neuron(int size, int min_, int max_, float threshold)
     this->threshold = threshold;
 }
 
-void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::vector<int>& targets, int epochs, float step) {
+void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::vector<std::string>& targets, int epochs, float step) {
     for (int epoch = 0; epoch < epochs; ++epoch) {
 
         this->v_error = 0; // На каждой эпохе количество ошибок обнуляется
@@ -35,7 +35,7 @@ void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::
         */
 
         for (size_t i = 0; i < training_data.size(); ++i) {  
-            int target = targets[i];
+            std::string target = targets[i];
             float sum = 0.0;
 
             for (size_t j = 0; j < training_data[i].size(); ++j) {
@@ -43,7 +43,7 @@ void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::
             }
 
             // Обновляем веса в зависимости от ошибки
-            if (target == 1 && sum <= threshold) {
+            if (target == "три" && sum <= threshold) {
                 // Если заданное число распознано неверно и сумма не доходит до порога
                 for (size_t j = 0; j < training_data[i].size(); ++j) {
                     if (training_data[i][j] == 1) {
@@ -52,7 +52,7 @@ void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::
                 }
                 this->v_error++;
             }
-            else if (target == 0 && sum > threshold) {
+            else if (target != "три" && sum > threshold) {
                 // Если распознанно незаданное число и его вес больше порога
                 for (size_t j = 0; j < training_data[i].size(); ++j) {
                     if (training_data[i][j] == 1) {

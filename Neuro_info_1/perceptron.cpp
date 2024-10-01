@@ -100,7 +100,7 @@ void perceptron::fit(const std::vector<std::vector<int>>& training_data, const s
             }
         }
 
-        std::cout << "Epoch " << epoch + 1 << " completed with " << this->m_errors << " errors." << std::endl;
+       // std::cout << "Epoch " << epoch + 1 << " completed with " << this->m_errors << " errors." << std::endl;
     }
 }
 void perceptron::get_weigths() const
