@@ -38,7 +38,7 @@ int main() {
         std::cout << "\nNEURON INITIAL WEIGHS:\n";
         n.printW();
         p.fit(training_data, targets, 5, 1);
-        n.fit(training_data, targets, 5, 1);
+        n.fit(training_data, targets, 15, 1);
         std::cout << "\nPERCEPTRON FINAL WEIGHS:\n";
         p.get_weigths();
         std::cout << "\nNEURON FINAL WEIGHS:\n";

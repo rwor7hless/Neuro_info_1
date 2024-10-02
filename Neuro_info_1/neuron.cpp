@@ -80,7 +80,7 @@ std::vector<int> neuron::predict(const std::vector<std::vector<int>>& test_data)
             sum += input[j] * this->weights[j];
         }
         // Предсказываем 1, если сумма больше или равна порогу, иначе 0
-        predictions.push_back(sum >= threshold ? 1 : 0);
+        predictions.push_back(sum > threshold ? 1 : 0);
     }
     return predictions;
 }
