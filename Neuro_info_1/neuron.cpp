@@ -43,7 +43,7 @@ void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::
             }
 
             // Обновляем веса в зависимости от ошибки
-            if (target == "три" && sum <= threshold) {
+            if (target == "1" && sum <= threshold) {
                 // Если заданное число распознано неверно и сумма не доходит до порога
                 for (size_t j = 0; j < training_data[i].size(); ++j) {
                     if (training_data[i][j] == 1) {
@@ -52,7 +52,7 @@ void neuron::fit(const std::vector<std::vector<int>>& training_data, const std::
                 }
                 this->v_error++;
             }
-            else if (target != "три" && sum > threshold) {
+            else if (target != "1" && sum > threshold) {
                 // Если распознанно незаданное число и его вес больше порога
                 for (size_t j = 0; j < training_data[i].size(); ++j) {
                     if (training_data[i][j] == 1) {

@@ -8,8 +8,7 @@ private:
 	std::vector<std::vector<float>>		m_weights;
 	int									m_errors;
 	std::vector<std::string>			m_numbers = {
-													"ноль", "один", "два", "три", "четыре", 
-													"пять", "шесть", "семь", "восемь", "девять"
+													"1", "0"
 													};
 public:
 	perceptron(int min_, int max_, int nums, int n_lenght);

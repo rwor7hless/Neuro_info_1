@@ -20,25 +20,23 @@ int main() {
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
 
-    for (int i = 0; i <= 15; ++i) {
+    for (int i = 0; i <= 9; ++i) {
         std::cout << std::format("\n\n_________________________NOW ARE {} ERRORS_________________________",i) << std::endl;
-        auto [training_data, targets] = readTrainDataFromFile_p(std::format("data/perceptron/train_data_corrupted_{}.txt", i));
+        auto [training_data, targets] = readTrainDataFromFile_p(std::format("data/train_data_corrupted_{}.txt", i));
         shuffle_data(training_data, targets);
-        auto test_data = readTestDataFromFile("data/perceptron/test_data_p.txt");
-        std::vector<std::string> answers;
         if (training_data.empty() || targets.empty()) {
             std::cerr << "No data loaded from file." << std::endl;
             return 1;
         }
 
-        perceptron p(-5, 5, 10, 15);
-        neuron n(15, -5, 5, 25);
+        perceptron p(-5, 5, 2, 9);
+        neuron n(9, -5, 5, 25);
         std::cout << "\nPERCEPTRON INITIAL WEIGHS:\n";
         p.get_weigths();
         std::cout << "\nNEURON INITIAL WEIGHS:\n";
         n.printW();
-        p.fit(training_data, targets, 5, 1);
-        n.fit(training_data, targets, 15, 1);
+        p.fit(training_data, targets, 4, 1);
+        n.fit(training_data, targets, 4, 1);
         std::cout << "\nPERCEPTRON FINAL WEIGHS:\n";
         p.get_weigths();
         std::cout << "\nNEURON FINAL WEIGHS:\n";
